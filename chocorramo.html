@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocorramo vs Salario Mínimo Colombia</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="bg-base-200">
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 border-b">
+        <div class="flex-1">
+            <a class="text-xl font-bold ml-2">El Poder Adquisitivo del Chocorramo</a>
+        </div>
+        <div class="flex-none">
+            <label class="swap swap-rotate btn btn-ghost btn-sm btn-circle">
+                <input type="checkbox" class="theme-controller" value="dark" />
+                <svg class="swap-off fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/></svg>
+                <svg class="swap-on fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>
+            </label>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6 max-w-6xl">
+
+        <!-- Stats -->
+        <div class="stats stats-vertical lg:stats-horizontal shadow w-full mb-6">
+            <div class="stat">
+                <div class="stat-title">Precio 2000</div>
+                <div class="stat-value text-primary">$500</div>
+            </div>
+            <div class="stat">
+                <div class="stat-title">Precio 2025</div>
+                <div class="stat-value text-secondary">$2,900</div>
+                <div class="stat-desc">↗︎ 480% aumento</div>
+            </div>
+            <div class="stat">
+                <div class="stat-title">Predicción 2026</div>
+                <div class="stat-value text-accent">$3,087</div>
+                <div class="stat-desc">Ensemble (IC: $2,965-$3,215)</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <div role="tablist" class="tabs tabs-lifted">
+                    <input type="radio" name="chart_tabs" role="tab" class="tab whitespace-nowrap" aria-label="Evolución de Precio" checked />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Evolución del Precio del Chocorramo</h3>
+                            <label class="label cursor-pointer gap-2">
+                                <span class="label-text text-sm">Mostrar modelos individuales e IC</span>
+                                <input type="checkbox" id="toggleRegression" class="toggle toggle-sm toggle-primary" checked />
+                            </label>
+                        </div>
+                        <canvas id="priceChart"></canvas>
+                    </div>
+
+                    <input type="radio" name="chart_tabs" role="tab" class="tab whitespace-nowrap" aria-label="Poder Adquisitivo" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <h3 class="text-lg font-bold mb-4">Poder Adquisitivo (Chocorramos por Salario)</h3>
+                        <canvas id="purchasingPowerChart"></canvas>
+                    </div>
+
+                    <input type="radio" name="chart_tabs" role="tab" class="tab whitespace-nowrap" aria-label="Comparación" />
+                    <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                        <h3 class="text-lg font-bold mb-4">Comparación: Precio vs Salario Total</h3>
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collapsible Sections -->
+        <div class="space-y-4 mt-6">
+            <!-- Datos Históricos -->
+            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+                <input type="checkbox" checked="checked" />
+                <div class="collapse-title text-xl font-medium">
+                    Datos Históricos
+                </div>
+                <div class="collapse-content">
+                    <div class="overflow-x-auto">
+                        <table class="table table-zebra table-xs lg:table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Año</th>
+                                    <th>Salario Mínimo</th>
+                                    <th>Aux. Transporte</th>
+                                    <th>Total</th>
+                                    <th>Precio Real</th>
+                                    <th>Precio Predicho</th>
+                                    <th>Chocorramos/Salario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>2000</td><td>$260,100</td><td>$26,413</td><td>$286,513</td><td>$500</td><td>$500</td><td>573</td></tr>
+                                <tr><td>2001</td><td>$286,000</td><td>$30,000</td><td>$316,000</td><td>$500</td><td>$535</td><td>632</td></tr>
+                                <tr><td>2002</td><td>$309,000</td><td>$34,000</td><td>$343,000</td><td>$600</td><td>$571</td><td>571</td></tr>
+                                <tr><td>2003</td><td>$332,000</td><td>$37,500</td><td>$369,500</td><td>$600</td><td>$611</td><td>615</td></tr>
+                                <tr><td>2004</td><td>$358,000</td><td>$41,600</td><td>$399,600</td><td>$700</td><td>$654</td><td>570</td></tr>
+                                <tr><td>2005</td><td>$381,500</td><td>$44,500</td><td>$426,000</td><td>$700</td><td>$699</td><td>608</td></tr>
+                                <tr><td>2006</td><td>$408,000</td><td>$47,700</td><td>$455,700</td><td>$800</td><td>$749</td><td>569</td></tr>
+                                <tr><td>2007</td><td>$433,700</td><td>$50,800</td><td>$484,500</td><td>$800</td><td>$802</td><td>605</td></tr>
+                                <tr><td>2008</td><td>$461,500</td><td>$55,000</td><td>$516,500</td><td>$900</td><td>$860</td><td>573</td></tr>
+                                <tr><td>2009</td><td>$496,900</td><td>$59,300</td><td>$556,200</td><td>$1,000</td><td>$921</td><td>556</td></tr>
+                                <tr><td>2010</td><td>$515,000</td><td>$61,500</td><td>$576,500</td><td>$1,000</td><td>$987</td><td>576</td></tr>
+                                <tr><td>2011</td><td>$535,600</td><td>$63,600</td><td>$599,200</td><td>$1,100</td><td>$1,058</td><td>544</td></tr>
+                                <tr><td>2012</td><td>$566,700</td><td>$67,800</td><td>$634,500</td><td>$1,100</td><td>$1,135</td><td>576</td></tr>
+                                <tr><td>2013</td><td>$589,500</td><td>$70,500</td><td>$660,000</td><td>$1,200</td><td>$1,218</td><td>550</td></tr>
+                                <tr><td>2014</td><td>$616,000</td><td>$72,000</td><td>$688,000</td><td>$1,200</td><td>$1,308</td><td>573</td></tr>
+                                <tr><td>2015</td><td>$644,350</td><td>$74,000</td><td>$718,350</td><td>$1,300</td><td>$1,406</td><td>552</td></tr>
+                                <tr><td>2016</td><td>$689,455</td><td>$77,700</td><td>$767,155</td><td>$1,500</td><td>$1,509</td><td>511</td></tr>
+                                <tr><td>2017</td><td>$737,717</td><td>$83,140</td><td>$820,857</td><td>$1,500</td><td>$1,620</td><td>547</td></tr>
+                                <tr><td>2018</td><td>$781,242</td><td>$88,211</td><td>$869,453</td><td>$1,700</td><td>$1,741</td><td>511</td></tr>
+                                <tr><td>2019</td><td>$828,116</td><td>$97,032</td><td>$925,148</td><td>$1,800</td><td>$1,869</td><td>513</td></tr>
+                                <tr><td>2020</td><td>$877,803</td><td>$102,854</td><td>$980,657</td><td>$2,000</td><td>$2,009</td><td>490</td></tr>
+                                <tr><td>2021</td><td>$908,526</td><td>$106,454</td><td>$1,014,980</td><td>$2,200</td><td>$2,158</td><td>461</td></tr>
+                                <tr><td>2022</td><td>$1,000,000</td><td>$117,172</td><td>$1,117,172</td><td>$2,400</td><td>$2,321</td><td>465</td></tr>
+                                <tr><td>2023</td><td>$1,160,000</td><td>$140,606</td><td>$1,300,606</td><td>$2,500</td><td>$2,497</td><td>520</td></tr>
+                                <tr><td>2024</td><td>$1,300,000</td><td>$162,000</td><td>$1,462,000</td><td>$2,700</td><td>$2,686</td><td>541</td></tr>
+                                <tr><td>2025</td><td>$1,423,500</td><td>$177,300</td><td>$1,600,800</td><td>$2,900</td><td>$2,894</td><td>552</td></tr>
+                                <tr class="bg-accent text-accent-content font-bold"><td>2026 *</td><td>$1,750,905</td><td>$249,095</td><td>$2,000,000</td><td>-</td><td>$3,087</td><td>648</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modelo de Regresión -->
+            <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+                <input type="checkbox" />
+                <div class="collapse-title text-xl font-medium">
+                    Modelo Ensemble (Combinado)
+                </div>
+                <div class="collapse-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div class="stat bg-base-200 rounded-lg">
+                            <div class="stat-title">Adaptativo (50%)</div>
+                            <div class="stat-value text-2xl">7.43%</div>
+                            <div class="stat-desc">μ ventana 5 años</div>
+                        </div>
+                        <div class="stat bg-base-200 rounded-lg">
+                            <div class="stat-title">Multivariable (30%)</div>
+                            <div class="stat-value text-2xl">R²=0.55</div>
+                            <div class="stat-desc">5 features</div>
+                        </div>
+                        <div class="stat bg-base-200 rounded-lg">
+                            <div class="stat-title">Constante (20%)</div>
+                            <div class="stat-value text-2xl">7.03%</div>
+                            <div class="stat-desc">μ histórico</div>
+                        </div>
+                    </div>
+                    <div class="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div>
+                            <h3 class="font-bold">Predicción 2026 (Ensemble)</h3>
+                            <div class="text-xs">$3,087 | IC 95%: [$2,965 - $3,215] | 648 Chocorramos | σ=2.09%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Datos quemados del CSV generado por Python - Modelo Ensemble
+        const data = [
+            {year: 2000, salary: 260100, transport: 26413, total: 286513, price: 500, ensemble: 500, constante: 500, adaptativo: 500, ci_lower: 500, ci_upper: 500, chocorramos: 573},
+            {year: 2001, salary: 286000, transport: 30000, total: 316000, price: 500, ensemble: 518, constante: 536, adaptativo: 500, ci_lower: 497, ci_upper: 539, chocorramos: 632},
+            {year: 2002, salary: 309000, transport: 34000, total: 343000, price: 600, ensemble: 570, constante: 576, adaptativo: 548, ci_lower: 437, ci_upper: 727, chocorramos: 571},
+            {year: 2003, salary: 332000, transport: 37500, total: 369500, price: 600, ensemble: 605, constante: 618, adaptativo: 583, ci_lower: 489, ci_upper: 743, chocorramos: 615},
+            {year: 2004, salary: 358000, transport: 41600, total: 399600, price: 700, ensemble: 670, constante: 662, adaptativo: 635, ci_lower: 549, ci_upper: 808, chocorramos: 570},
+            {year: 2005, salary: 381500, transport: 44500, total: 426000, price: 700, ensemble: 710, constante: 711, adaptativo: 680, ci_lower: 589, ci_upper: 846, chocorramos: 608},
+            {year: 2006, salary: 408000, transport: 47700, total: 455700, price: 800, ensemble: 784, constante: 763, adaptativo: 747, ci_lower: 658, ci_upper: 928, chocorramos: 569},
+            {year: 2007, salary: 433700, transport: 50800, total: 484500, price: 800, ensemble: 823, constante: 818, adaptativo: 791, ci_lower: 703, ci_upper: 959, chocorramos: 605},
+            {year: 2008, salary: 461500, transport: 55000, total: 516500, price: 900, ensemble: 896, constante: 878, adaptativo: 857, ci_lower: 769, ci_upper: 1036, chocorramos: 573},
+            {year: 2009, salary: 496900, transport: 59300, total: 556200, price: 1000, ensemble: 965, constante: 941, adaptativo: 919, ci_lower: 845, ci_upper: 1096, chocorramos: 556},
+            {year: 2010, salary: 515000, transport: 61500, total: 576500, price: 1000, ensemble: 1040, constante: 1010, adaptativo: 986, ci_lower: 913, ci_upper: 1182, chocorramos: 576},
+            {year: 2011, salary: 535600, transport: 63600, total: 599200, price: 1100, ensemble: 1113, constante: 1083, adaptativo: 1051, ci_lower: 989, ci_upper: 1249, chocorramos: 544},
+            {year: 2012, salary: 566700, transport: 67800, total: 634500, price: 1100, ensemble: 1164, constante: 1163, adaptativo: 1120, ci_lower: 1035, ci_upper: 1302, chocorramos: 576},
+            {year: 2013, salary: 589500, transport: 70500, total: 660000, price: 1200, ensemble: 1235, constante: 1247, adaptativo: 1186, ci_lower: 1114, ci_upper: 1367, chocorramos: 550},
+            {year: 2014, salary: 616000, transport: 72000, total: 688000, price: 1200, ensemble: 1271, constante: 1338, adaptativo: 1230, ci_lower: 1149, ci_upper: 1399, chocorramos: 573},
+            {year: 2015, salary: 644350, transport: 74000, total: 718350, price: 1300, ensemble: 1341, constante: 1436, adaptativo: 1297, ci_lower: 1220, ci_upper: 1472, chocorramos: 552},
+            {year: 2016, salary: 689455, transport: 77700, total: 767155, price: 1500, ensemble: 1436, constante: 1540, adaptativo: 1380, ci_lower: 1269, ci_upper: 1615, chocorramos: 511},
+            {year: 2017, salary: 737717, transport: 83140, total: 820857, price: 1500, ensemble: 1536, constante: 1652, adaptativo: 1469, ci_lower: 1357, ci_upper: 1734, chocorramos: 547},
+            {year: 2018, salary: 781242, transport: 88211, total: 869453, price: 1700, ensemble: 1669, constante: 1774, adaptativo: 1575, ci_lower: 1459, ci_upper: 1902, chocorramos: 511},
+            {year: 2019, salary: 828116, transport: 97032, total: 925148, price: 1800, ensemble: 1789, constante: 1904, adaptativo: 1707, ci_lower: 1595, ci_upper: 1998, chocorramos: 513},
+            {year: 2020, salary: 877803, transport: 102854, total: 980657, price: 2000, ensemble: 1965, constante: 2042, adaptativo: 1862, ci_lower: 1752, ci_upper: 2193, chocorramos: 490},
+            {year: 2021, salary: 908526, transport: 106454, total: 1014980, price: 2200, ensemble: 2138, constante: 2191, adaptativo: 2010, ci_lower: 1938, ci_upper: 2350, chocorramos: 461},
+            {year: 2022, salary: 1000000, transport: 117172, total: 1117172, price: 2400, ensemble: 2355, constante: 2350, adaptativo: 2208, ci_lower: 2238, ci_upper: 2473, chocorramos: 465},
+            {year: 2023, salary: 1160000, transport: 140606, total: 1300606, price: 2500, ensemble: 2529, constante: 2522, adaptativo: 2386, ci_lower: 2398, ci_upper: 2666, chocorramos: 520},
+            {year: 2024, salary: 1300000, transport: 162000, total: 1462000, price: 2700, ensemble: 2715, constante: 2706, adaptativo: 2588, ci_lower: 2587, ci_upper: 2853, chocorramos: 541},
+            {year: 2025, salary: 1423500, transport: 177300, total: 1600800, price: 2900, ensemble: 2903, constante: 2903, adaptativo: 2788, ci_lower: 2785, ci_upper: 3023, chocorramos: 552},
+            {year: 2026, salary: 1750905, transport: 249095, total: 2000000, price: 3087, ensemble: 3087, constante: 3117, adaptativo: 3003, ci_lower: 2965, ci_upper: 3215, chocorramos: 648}
+        ];
+
+        // Chart configurations
+        const chartConfig = {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                }
+            }
+        };
+
+        // Price Evolution Chart
+        const priceCtx = document.getElementById('priceChart').getContext('2d');
+        const priceChart = new Chart(priceCtx, {
+            type: 'line',
+            data: {
+                labels: data.map(d => d.year),
+                datasets: [
+                    {
+                        label: 'IC 95% Superior',
+                        data: data.map(d => d.ci_upper),
+                        borderColor: 'rgba(34, 197, 94, 0.2)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        fill: '+1',
+                        borderWidth: 1,
+                        pointRadius: 0,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'IC 95% Inferior',
+                        data: data.map(d => d.ci_lower),
+                        borderColor: 'rgba(34, 197, 94, 0.2)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        fill: false,
+                        borderWidth: 1,
+                        pointRadius: 0,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Precio Real',
+                        data: data.slice(0, -1).map(d => d.price),
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        tension: 0.1,
+                        fill: false,
+                        pointRadius: 4,
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'Ensemble (Recomendado)',
+                        data: data.map(d => d.ensemble),
+                        borderColor: 'rgb(34, 197, 94)',
+                        borderWidth: 2.5,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Drift Constante',
+                        data: data.map(d => d.constante),
+                        borderColor: 'rgb(239, 68, 68)',
+                        borderDash: [5, 5],
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Drift Adaptativo',
+                        data: data.map(d => d.adaptativo),
+                        borderColor: 'rgb(168, 85, 247)',
+                        borderDash: [10, 5],
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: false,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Predicción 2026',
+                        data: [...Array(data.length - 1).fill(null), data[data.length - 1].price],
+                        borderColor: 'rgb(34, 197, 94)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.5)',
+                        pointRadius: 10,
+                        pointStyle: 'star'
+                    }
+                ]
+            },
+            options: {
+                ...chartConfig,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString('es-CO');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Purchasing Power Chart
+        const ppCtx = document.getElementById('purchasingPowerChart').getContext('2d');
+        const ppChart = new Chart(ppCtx, {
+            type: 'bar',
+            data: {
+                labels: data.map(d => d.year),
+                datasets: [{
+                    label: 'Chocorramos por Salario',
+                    data: data.map(d => d.chocorramos),
+                    backgroundColor: data.map((d, i) =>
+                        i === data.length - 1 ? 'rgba(34, 197, 94, 0.6)' : 'rgba(168, 85, 247, 0.6)'
+                    ),
+                    borderColor: data.map((d, i) =>
+                        i === data.length - 1 ? 'rgb(34, 197, 94)' : 'rgb(168, 85, 247)'
+                    ),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...chartConfig,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Chocorramos'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Comparison Chart
+        const compCtx = document.getElementById('comparisonChart').getContext('2d');
+        const compChart = new Chart(compCtx, {
+            type: 'line',
+            data: {
+                labels: data.map(d => d.year),
+                datasets: [
+                    {
+                        label: 'Salario Total',
+                        data: data.map(d => d.total),
+                        borderColor: 'rgb(59, 130, 246)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        yAxisID: 'y',
+                        tension: 0.1,
+                        fill: true
+                    },
+                    {
+                        label: 'Precio Chocorramo (Real)',
+                        data: data.slice(0, -1).map(d => d.price),
+                        borderColor: 'rgb(251, 146, 60)',
+                        backgroundColor: 'rgba(251, 146, 60, 0.1)',
+                        yAxisID: 'y1',
+                        tension: 0.1,
+                        fill: true
+                    },
+                    {
+                        label: 'Precio Predicho 2026',
+                        data: [...Array(data.length - 1).fill(null), data[data.length - 1].price],
+                        borderColor: 'rgb(34, 197, 94)',
+                        backgroundColor: 'rgba(34, 197, 94, 0.5)',
+                        yAxisID: 'y1',
+                        pointRadius: 8,
+                        pointStyle: 'star'
+                    }
+                ]
+            },
+            options: {
+                ...chartConfig,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Salario Total'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value/1000).toFixed(0) + 'K';
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Precio Chocorramo'
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString('es-CO');
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Toggle models and confidence interval
+        document.getElementById('toggleRegression').addEventListener('change', function(e) {
+            // IC Superior (0), IC Inferior (1), Constante (4), Adaptativo (5)
+            priceChart.data.datasets[0].hidden = !e.target.checked;
+            priceChart.data.datasets[1].hidden = !e.target.checked;
+            priceChart.data.datasets[4].hidden = !e.target.checked;
+            priceChart.data.datasets[5].hidden = !e.target.checked;
+            priceChart.update();
+        });
+
+        // Theme switcher
+        const themeController = document.querySelector('.theme-controller');
+        themeController.addEventListener('change', function() {
+            document.documentElement.setAttribute('data-theme', this.checked ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>
