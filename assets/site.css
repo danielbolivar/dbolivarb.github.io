@@ -184,6 +184,7 @@ html[data-lang="en"] [lang="es"], html[data-lang="es"] [lang="en"] { display: no
 .rows { border-top: 2px solid var(--fg); }
 .row { display: grid; gap: 6px 28px; padding: 18px 0; border-bottom: 2px solid var(--fg); }
 .row h3 { font: 400 clamp(20px, 2.6vw, 26px)/1.1 var(--display); text-transform: uppercase; margin: 0; }
+.row .role { margin: 6px 0 2px; font-weight: 700; }
 .row .when { font-size: 13px; color: var(--mute); letter-spacing: .04em; }
 .row ul { margin: 6px 0 0; padding-left: 18px; }
 .row li { margin: 4px 0; }
