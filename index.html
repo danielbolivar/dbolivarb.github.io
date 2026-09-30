@@ -1,217 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en" data-title-en="Daniel Bolivar — Games & CV" data-title-es="Daniel Bolivar — Juegos y CV">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel Bolivar - CV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3B82F6',
-                    }
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .transition-theme {
-                transition: background-color 0.3s ease, color 0.3s ease;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daniel Bolivar — Games & CV</title>
+  <meta name="description" content="Daniel Bolivar: mobile games and CV.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='4' y='23' font-family='Arial Black' font-size='16' fill='%23f1efe8'%3EDB%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js"></script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 transition-theme">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Header with controls -->
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Daniel Bolivar</h1>
-            <div class="flex gap-4">
-                <button id="themeToggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-theme">
-                    <svg class="w-6 h-6 text-gray-800 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path class="dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
-                        <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                    </svg>
-                </button>
-                <button id="langToggle" class="px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-600 transition-theme">
-                    <span class="en">ES</span>
-                    <span class="es hidden">EN</span>
-                </button>
-            </div>
+<body>
+  <div class="home">
+    <header class="bar">
+      <span>Daniel Bolivar</span>
+      <button class="lang" type="button">ES</button>
+    </header>
+
+    <main class="doors">
+      <a class="door" href="games/">
+        <div class="door__top"><span>01</span><span class="door__arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h2 class="door__word">Games</h2>
+          <p class="door__sub">
+            <span lang="en">Myne, a dungeon shop tycoon for Android. More coming from the same factory.</span>
+            <span lang="es">Myne, un tycoon de tienda en la mazmorra para Android. Vienen más de la misma fábrica.</span>
+          </p>
         </div>
-
-        <!-- Contact Information -->
-        <div class="mb-8 text-gray-600 dark:text-gray-300">
-            <p><a href="https://www.linkedin.com/in/daniel-bolivar-966a06266/" class="text-primary hover:underline" target="_blank">LinkedIn</a> | <a href="https://github.com/danielbolivar" class="text-primary hover:underline" target="_blank">GitHub</a></p>
+      </a>
+      <a class="door" href="cv/">
+        <div class="door__top"><span>02</span><span class="door__arrow" aria-hidden="true">↗</span></div>
+        <div>
+          <h2 class="door__word">CV</h2>
+          <p class="door__sub">
+            <span lang="en">Systems engineering at Los Andes. Backend, agents and cloud.</span>
+            <span lang="es">Ingeniería de Sistemas en Los Andes. Backend, agentes y nube.</span>
+          </p>
         </div>
+      </a>
+    </main>
 
-        <!-- Education -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                <span class="en">Education</span>
-                <span class="es hidden">Educación</span>
-            </h2>
-            <p class="text-gray-600 dark:text-gray-300">
-                <span class="en">Third-year Systems and Computer Engineering student at Universidad de Los Andes. (Expected Graduation: 2027)</span>
-                <span class="es hidden">Estudiante de tercer año de Ingeniería de Sistemas y Computación en la Universidad de Los Andes. (Graduación esperada: 2027)</span>
-            </p>
-        </section>
-
-        <!-- Technical Skills -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                <span class="en">Technical Skills</span>
-                <span class="es hidden">Habilidades Técnicas</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-                        <span class="en">Languages</span>
-                        <span class="es hidden">Lenguajes</span>
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300">Javascript, Typescript, Java, Python</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-                        <span class="en">Frameworks</span>
-                        <span class="es hidden">Frameworks</span>
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300">Django, Spring Boot</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-                        <span class="en">Cloud Platforms</span>
-                        <span class="es hidden">Plataformas Cloud</span>
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300">Google Cloud Platform (GCP) — Familiar with implementing CI/CD and cloud services.</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <h3 class="font-semibold mb-2 text-gray-900 dark:text-white">
-                        <span class="en">Other Tools</span>
-                        <span class="es hidden">Otras Herramientas</span>
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300">Docker, Linux, Git, Postman and ML.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                <span class="en">Experience</span>
-                <span class="es hidden">Experiencia</span>
-            </h2>
-            <div class="space-y-6">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Universidad de Los Andes</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">August 2023 - Present</p>
-                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                        <li class="en">Developed and improved the Senecode platform using Django and Python, a tool designed for introductory programming courses at the university.</li>
-                        <li class="en">Implemented a streak system to enhance student engagement and motivation.</li>
-                        <li class="en">Designed and optimized procedures to improve professor user experience (UX) when reviewing student assignments.</li>
-                        <li class="en">Dockerized the entire application to streamline deployment.</li>
-                        <li class="en">Implemented a simple CLI to facilitate testing.</li>
-
-                        <li class="es hidden">Desarrollé y mejoré la plataforma Senecode usando Django y Python, una herramienta diseñada para cursos introductorios de programación en la universidad.</li>
-                        <li class="es hidden">Implementé un sistema de racha para mejorar el compromiso y la motivación de los estudiantes.</li>
-                        <li class="es hidden">Diseñé y optimicé procedimientos para mejorar la experiencia de usuario (UX) de los profesores al revisar las tareas de los estudiantes.</li>
-                        <li class="es hidden">Containericé toda la aplicación para agilizar el despliegue.</li>
-                        <li class="es hidden">Implementé una CLI simple para facilitar las pruebas.</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Falcon</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">September 2024 - August 2025</p>
-                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                        <li class="en">Designed and built two proof-of-concept agents for a healthcare startup.</li>
-                        <li class="en">Developed a voice-based scheduling assistant that handles inbound calls using speech recognition and LLMs.</li>
-                        <li class="en">Built an automated insurance pre-authorization agent to accelerate approvals and reduce manual workload.</li>
-                        <li class="en">Owned the full architecture and implementation for both solutions from scratch, including integrations, workflows, and deployment.</li>
-
-                        <li class="es hidden">Diseñé y construí dos agentes de prueba de concepto para una startup de salud.</li>
-                        <li class="es hidden">Desarrollé un asistente de programación basado en voz que maneja llamadas entrantes usando reconocimiento de voz y LLMs.</li>
-                        <li class="es hidden">Construí un agente automatizado de pre-autorización de seguros para acelerar aprobaciones y reducir la carga de trabajo manual.</li>
-                        <li class="es hidden">Me hice cargo de la arquitectura completa e implementación de ambas soluciones desde cero, incluyendo integraciones, flujos de trabajo y despliegue.</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Konnectia Group</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">November 2024 - February 2025</p>
-                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                        <li class="en">Contributed to the development of the Django backend and helped design and structure the system architecture.</li>
-                        <li class="en">To support the proof of concept (PoC) without incurring additional costs, I deployed the backend on my personal Proxmox physical server, enabling the team to validate the project's potential.</li>
-                        <li class="en">Once the project demonstrated viability, it was migrated to AWS for scalability and production use.</li>
-                        <li class="en">This approach helped the company save money during the initial stages and easily prove the concept, accelerating the project's development timeline.</li>
-
-                        <li class="es hidden">Contribuí al desarrollo del backend en Django y ayudé a diseñar y estructurar la arquitectura del sistema.</li>
-                        <li class="es hidden">Para apoyar la prueba de concepto (PoC) sin incurrir en costos adicionales, desplegué el backend en mi servidor físico personal Proxmox, permitiendo al equipo validar el potencial del proyecto.</li>
-                        <li class="es hidden">Una vez que el proyecto demostró viabilidad, fue migrado a AWS para escalabilidad y uso en producción.</li>
-                        <li class="es hidden">Este enfoque ayudó a la empresa a ahorrar dinero durante las etapas iniciales y a probar fácilmente el concepto, acelerando el cronograma de desarrollo del proyecto.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Languages -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-                <span class="en">Languages</span>
-                <span class="es hidden">Idiomas</span>
-            </h2>
-            <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
-                    <li class="en">English C1 — Certified by an IELTS exam</li>
-                    <li class="en">Spanish — Native Speaker</li>
-
-                    <li class="es hidden">Inglés C1 — Certificado por examen IELTS</li>
-                    <li class="es hidden">Español — Idioma nativo</li>
-                </ul>
-            </div>
-        </section>
-    </div>
-
-    <script>
-        // Dark mode toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
-
-        // Check for saved theme preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
-        } else {
-            html.classList.remove('dark');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
-        });
-
-        // Language toggle
-        const langToggle = document.getElementById('langToggle');
-        const enElements = document.querySelectorAll('.en');
-        const esElements = document.querySelectorAll('.es');
-
-        // Check for saved language preference
-        const currentLang = localStorage.getItem('language') || 'en';
-        if (currentLang === 'es') {
-            enElements.forEach(el => el.classList.add('hidden'));
-            esElements.forEach(el => el.classList.remove('hidden'));
-        }
-
-        langToggle.addEventListener('click', () => {
-            const isEnglish = enElements[0].classList.contains('hidden');
-            enElements.forEach(el => el.classList.toggle('hidden'));
-            esElements.forEach(el => el.classList.toggle('hidden'));
-            localStorage.setItem('language', isEnglish ? 'en' : 'es');
-        });
-    </script>
+    <footer class="bar bar--bottom">
+      <span>Bogotá, CO</span>
+      <nav>
+        <a href="https://github.com/danielbolivar" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/daniel-bolivar-966a06266/" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </footer>
+  </div>
 </body>
 </html>
-
