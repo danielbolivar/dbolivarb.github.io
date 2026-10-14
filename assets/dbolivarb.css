@@ -92,6 +92,18 @@ html[data-lang="en"] [lang="es"], html[data-lang="es"] [lang="en"] { display: no
   .page { padding-top: 72px; }
 }
 
+/* páginas internas: TabBar abajo en móvil, arriba en escritorio */
+.title { margin: 0; font: 700 28px/1.1 var(--font-sans); letter-spacing: -.02em; text-wrap: balance; }
+.body { margin: 0; font: 400 16px/1.55 var(--font-sans); max-width: 60ch; }
+.section { display: grid; gap: var(--space-6); min-width: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.pills { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.has-tabs .page { padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px) + var(--space-10)); }
+@media (min-width: 820px) {
+  .has-tabs .page { padding-top: var(--space-14); padding-bottom: max(var(--space-14), env(safe-area-inset-bottom, 0px)); }
+  html.has-tabs { scroll-padding-top: calc(var(--tabbar-h) + var(--space-6)); }
+}
+
 /* Monogram */
 .db-mono { width: 44px; height: 44px; border-radius: var(--radius-full); display: inline-grid; place-items: center; background: var(--ink); color: var(--on-ink); font: 700 15px/1 var(--font-sans); letter-spacing: .02em; flex: none; }
 
@@ -142,7 +154,40 @@ a.db-tile:hover { transform: translateY(-2px); }
 .db-tabs--fixed { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; }
 @media (min-width: 820px) {
   .db-tabs--fixed { position: sticky; top: env(safe-area-inset-top, 0px); bottom: auto; border-top: 0; border-bottom: 1px solid var(--line); padding-bottom: var(--space-2); }
-  .db-tabs--fixed .db-tab { grid-auto-flow: column; gap: var(--space-2); font-size: 14px; }
+  .db-tabs--fixed .db-tab { grid-auto-flow: column; justify-content: center; align-items: center; gap: var(--space-2); font-size: 14px; }
 }
+
+/* ProductHead: ícono + nombre de un producto */
+.db-product { display: flex; align-items: center; gap: var(--space-4); }
+.db-product__icon { width: 72px; height: 72px; border-radius: var(--radius-lg); flex: none; }
+
+/* Shots: capturas de un producto, deslizables */
+.db-shots {
+  display: flex; gap: var(--space-3);
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin-right: calc(-1 * max(var(--space-5), env(safe-area-inset-right, 0px)));
+  padding-right: max(var(--space-5), env(safe-area-inset-right, 0px));
+  padding-bottom: var(--space-1);
+}
+.db-shots::-webkit-scrollbar { display: none; }
+.db-shots img { flex: none; width: min(60vw, 220px); aspect-ratio: 9 / 16; object-fit: cover; border-radius: var(--radius-lg); scroll-snap-align: start; background: var(--fill); }
+@media (min-width: 768px) { .db-shots { margin-right: 0; padding-right: 0; } .db-shots img { width: 200px; } }
+
+/* Facts: pares dato / valor en filas */
+.db-facts { margin: 0; border-top: 1px solid var(--line); }
+.db-facts > div { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--space-4); padding: 14px 4px; border-bottom: 1px solid var(--line); }
+.db-facts dt { font: 400 14px/1.45 var(--font-sans); color: var(--mute); }
+.db-facts dd { margin: 0; font: 500 15px/1.45 var(--font-sans); }
+
+/* List: viñetas de texto corrido */
+.db-list { margin: 0; padding-left: 1.1em; display: grid; gap: var(--space-2); font: 400 16px/1.55 var(--font-sans); }
+.db-list li::marker { color: var(--mute); }
+
+/* Entry: un puesto o estudio del CV */
+.db-entries { border-top: 1px solid var(--line); }
+.db-entry { display: grid; gap: var(--space-3); padding: var(--space-6) 4px; border-bottom: 1px solid var(--line); }
+.db-entry__title { margin: 0; font: 700 20px/1.3 var(--font-sans); letter-spacing: -.01em; }
+.db-entry__meta { margin: var(--space-1) 0 0; font: 400 14px/1.45 var(--font-sans); color: var(--mute); }
+.db-entry .db-list, .db-entry .body { font-size: 15px; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
