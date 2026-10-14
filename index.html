@@ -1,55 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en" data-title-en="Daniel Bolivar — Games & CV" data-title-es="Daniel Bolivar — Juegos y CV">
+<html lang="en" data-lang="en" data-title-en="Daniel Bolivar" data-title-es="Daniel Bolivar">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daniel Bolivar — Games & CV</title>
-  <meta name="description" content="Daniel Bolivar: mobile games and CV.">
-  <meta name="theme-color" content="#0a0a0a">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='4' y='23' font-family='Arial Black' font-size='16' fill='%23f1efe8'%3EDB%3C/text%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Daniel Bolivar</title>
+  <meta name="description" content="Daniel Bolivar: co-founder of Tribuya and Systems Engineering student at Los Andes. Backend, AI agents and mobile games.">
+  <meta name="theme-color" content="#f5f5f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230a0a0a'/%3E%3Ctext x='16' y='20.5' text-anchor='middle' font-family='Arial' font-weight='700' font-size='12' fill='%23ffffff'%3EDB%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/dbolivarb.css">
   <script src="assets/site.js"></script>
 </head>
 <body>
-  <div class="home">
-    <header class="bar">
-      <span>Daniel Bolivar</span>
-      <button class="lang" type="button">ES</button>
+  <div class="page">
+    <header class="head">
+      <span class="db-mono" aria-hidden="true">DB</span>
+      <button class="db-lang lang" type="button">ES</button>
     </header>
 
-    <main class="doors">
-      <a class="door" href="games/">
-        <div class="door__top"><span>01</span><span class="door__arrow" aria-hidden="true">↗</span></div>
-        <div>
-          <h2 class="door__word">Games</h2>
-          <p class="door__sub">
-            <span lang="en">Myne, a dungeon shop tycoon for Android. More coming from the same factory.</span>
-            <span lang="es">Myne, un tycoon de tienda en la mazmorra para Android. Vienen más de la misma fábrica.</span>
-          </p>
+    <main class="main">
+      <section class="hero">
+        <h1 class="display">Daniel Bolivar</h1>
+        <p class="lead">
+          <span lang="es">Cofundador de Tribuya y estudiante de Ingeniería de Sistemas en Los Andes. Hago backends, agentes de IA y juegos para el celular.</span>
+          <span lang="en">Co-founder of Tribuya and Systems Engineering student at Los Andes. I build backends, AI agents and mobile games.</span>
+        </p>
+        <span class="db-pill">Bogotá, CO</span>
+      </section>
+
+      <nav class="paths" aria-label="Menu">
+        <div class="db-tiles">
+          <a class="db-tile" href="games/">
+            <h2 class="db-tile__title"><span lang="es">Juegos</span><span lang="en">Games</span></h2>
+            <p class="db-tile__desc"><span lang="es">Myne, pronto en Android</span><span lang="en">Myne, soon on Android</span></p>
+            <div class="db-tile__foot">
+              <span class="db-tile__go"><span lang="es">Ver</span><span lang="en">View</span> <span aria-hidden="true">→</span></span>
+              <img class="db-tile__img" src="games/myne/img/icon.png" width="192" height="192" alt="">
+            </div>
+          </a>
+          <a class="db-tile" href="cv/">
+            <h2 class="db-tile__title">CV</h2>
+            <p class="db-tile__desc"><span lang="es">Experiencia, stack y educación</span><span lang="en">Experience, stack and education</span></p>
+            <div class="db-tile__foot">
+              <span class="db-tile__go"><span lang="es">Ver</span><span lang="en">View</span> <span aria-hidden="true">→</span></span>
+            </div>
+          </a>
         </div>
-      </a>
-      <a class="door" href="cv/">
-        <div class="door__top"><span>02</span><span class="door__arrow" aria-hidden="true">↗</span></div>
-        <div>
-          <h2 class="door__word">CV</h2>
-          <p class="door__sub">
-            <span lang="en">Co-founder of Tribuya. Systems engineering at Los Andes. Backend, agents and cloud.</span>
-            <span lang="es">Cofundador de Tribuya. Ingeniería de Sistemas en Los Andes. Backend, agentes y nube.</span>
-          </p>
-        </div>
-      </a>
+
+        <ul class="db-rows">
+          <li><a class="db-row" href="https://github.com/danielbolivar" target="_blank" rel="noopener">
+            <span class="db-row__title">GitHub</span>
+            <span class="db-row__desc">@danielbolivar</span>
+            <span class="db-row__arrow" aria-hidden="true">↗</span>
+          </a></li>
+          <li><a class="db-row" href="https://www.linkedin.com/in/daniel-bolivar-966a06266/" target="_blank" rel="noopener">
+            <span class="db-row__title">LinkedIn</span>
+            <span class="db-row__desc"><span lang="es">Trayectoria y contacto</span><span lang="en">Background and contact</span></span>
+            <span class="db-row__arrow" aria-hidden="true">↗</span>
+          </a></li>
+        </ul>
+      </nav>
     </main>
 
-    <footer class="bar bar--bottom">
-      <span>Bogotá, CO</span>
-      <nav>
-        <a href="https://github.com/danielbolivar" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/daniel-bolivar-966a06266/" target="_blank" rel="noopener">LinkedIn</a>
-      </nav>
-    </footer>
+    <footer class="label">© 2026 Daniel Bolivar</footer>
   </div>
 </body>
 </html>
